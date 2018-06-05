@@ -15,6 +15,7 @@
 
 - Choose a theme from:  https://pages.github.com/themes/ and add it to the `_config.yml` file
 - Ensure you create `_layouts/home.html` and such with the proper content (consult [minima](https://github.com/jekyll/minima/tree/master/_layouts))
+- Add CSS to fix the styling:  https://help.github.com/articles/customizing-css-and-html-in-your-jekyll-theme/
 
 
 ## Local Testing/ Development
