@@ -11,6 +11,12 @@
 - (Note, if you named your repo YOUR-USER.github.io, it will appear without the `your_project` subfolder)
 
 
+## Optional
+
+- Choose a theme from:  https://pages.github.com/themes/ and add it to the `_config.yml` file
+- Ensure you create `_layouts/home.html` and such with the proper content (consult [minima](https://github.com/jekyll/minima/tree/master/_layouts))
+
+
 ## Local Testing/ Development
 
 `jekyll serve`
