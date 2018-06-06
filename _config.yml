@@ -16,7 +16,7 @@
 title: Software, Team Structures, and the Origin of Beach Sand
 #email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Bull-$#@! is my kryptonight
+  Other people's bull-$#@! is my kryptonight
 baseurl: "/myblog" # the subpath of your site, e.g. /blog
 url: "https://irobl.github.io/myblog" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: irobl
@@ -24,7 +24,8 @@ github_username:  irobl
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-hacker
+#theme: jekyll-theme-hacker
+theme: minima
 plugins:
   - jekyll-feed
 
