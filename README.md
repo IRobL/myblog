@@ -28,3 +28,4 @@
 - Howto Basic flatfile hosting on GH: https://www.youtube.com/watch?v=qoQzIjGbfTg
 - Tweaking Jekyll with GH:  https://www.youtube.com/watch?v=cH9T9yRZ33c
 - Jekyll docs:  jekyll serve
+- More on styling:  http://simpleprimate.com/jekyll-for-designers/blog/css/

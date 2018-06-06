@@ -5,3 +5,7 @@
 p {
   text-indent: 50px;
 }
+
+.wrapper {
+  max-width: calc(747px - (30px * 2));
+}
