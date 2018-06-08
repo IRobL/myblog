@@ -6,6 +6,10 @@ p {
   text-indent: 50px;
 }
 
+.footer-col p {
+  text-indent: 0px;
+}
+
 .wrapper {
   max-width: calc(747px - (30px * 2));
 }
