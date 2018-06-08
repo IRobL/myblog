@@ -51,9 +51,11 @@ The one thing I absolutely require to happy on a team is a culture of respect.  
 I guess it works kind of like driving.  Let's say you're on the road, and you're just chilling, and sure there's traffic ahead of you, and you're going just the speedlimit.  You want to take it easy, so you leave 5 car lengths ahead of you and the next guy, and somebody cuts right in front of you.  You're being chill, so you add 5 more car lengths and a few seconds later, someone merges in front of you again.  At some point, you start to realize that you're unable to actually keep a comfortable distance away from other people because the atmosphere you're in wants to cram ahead of you simply to get ahead by 1-2 car lengths.  There becomes no reasonable way to achieve comfort due to the environment we're in.  That sucks to be in traffic all day, and then to show up at work and be in yet another uncomfortable environment.
 
 
-## Independence
+## Capability/ Independence
 
 When I make a hiring yay/ nah, I look for people who appear capable of independent productivity.  It doesn't help me having someone on-boarded who needs me to hold their hand every step of the way.  That sort of leads me to my next criteria.
+
+Hiring capable people resolves a lot of critical propblems that can take place in the work place.  People who aren't capable of doing their work, not only won't help the completion of a project, but out of concern for being discovered as incapable employees, they will engauge in toxic behavior, pointing fingers at other people's imperfections, whine and complain about the project's overall direction in the hopes that everyone they've spoken to will be too busy critique the people being criticised, that they themselves will not be found out until very far into the project where they will hope to have solidified their role as "The person who tells everyone else how things should be done."  You might look at that positively as fate this person who wasn't good at anything has found a way to contribute, but honestly, you don't want people who don't know what they're doing being in charge of telling others what to do, it's just a cluster duck of charades, participating in technological make-believe, and ultimately delivering low quality, over-budget products.
 
 
 ## Humility, Eagerness to Learn, Receptive to Feedback
