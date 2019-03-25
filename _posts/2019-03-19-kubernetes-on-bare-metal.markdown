@@ -54,28 +54,93 @@ microk8s.docker ps
 ```
 
 
-## Validate your Kubernetes and dashboard install
+## Validate your dashboard install
 
 ```
-kubectl get nodes
-kubectl cluster-info
+microk8s.kubectl get nodes
+microk8s.kubectl get nodes
+microk8s.kubectl cluster-info
 ```
 
 Navigate to the `kubernetes-dashboard` url that should have been printed in that `kubectl cluster-info` command.  You won't be able to login yet though, that's next.  
 
 
 
+## Validate you can deploy simple containers
+
+Ref: https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment
+
+Applying the below deployment configuration will spin up 2 containers serving basic html content via nginx.  
+```
+microk8s.kubectl apply -f - <<EOF
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+EOF
+```
+
+
+
+
+## What is a Kubeconfig?
+
+Ref: [kubernetes.io Kubeconfigs](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
+Ref: http://docs.shippable.com/deploy/tutorial/create-kubeconfig-for-self-hosted-kubernetes-cluster/
+
+By default, `kubectl` looks in `~/.kube/config` to find your Kubeconfig file.  This is how you organize access to a specific kuberenetes cluster.  
+
+
 ## Configure K8s Dashboard
 
 Ref: https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
+Better ref: http://docs.shippable.com/deploy/tutorial/create-kubeconfig-for-self-hosted-kubernetes-cluster/
+SO Ref: https://stackoverflow.com/questions/42170380/how-to-add-users-to-kubernetes-kubectl
 
 ###### Create the service account
 
-???
+```
+microk8s.kubectl create -f - <<EOF
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: svcs-acct-dply #any name you'd like
+EOF
+```
+
+Validate you can get the secret name:
+
+```
+kubectl describe serviceAccounts svcs-acct-dply
+```
+
+From that output, figure out the name of the mountable secret and print it:
+
+```
+kubectl describe secrets svcs-acct-dply-token-h6pdj
+```
 
 ###### Give the service account the admin-user role
 
+Is this needed?
+```
 ???
+```
 
 ###### Extract the login token and use it to login to the dashboard
 
@@ -87,8 +152,10 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 
 
 
+## How to enable external access to your pods
 
-https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment
+
+
 
 
 
