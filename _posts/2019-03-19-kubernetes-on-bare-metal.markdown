@@ -12,7 +12,7 @@ So this blog post comes after sinking many hours of time into setting up an open
 ###### Overview
 - Install Ubuntu on a bare metal PC, choosing to use the [microk8s](https://github.com/ubuntu/microk8s) Snap during the Ubuntu installation process
 - Setup some bash aliases on that Ubuntu machine so local development can happen
--
+- You can turn it off and back on again with `sudo snap disable microk8s; sudo snap enable microk8s`
 
 
 ## Install ubuntu (and include the microk8s snap)
@@ -26,21 +26,15 @@ Snaps can also be installed post-installation, simply run `snap install microk8s
 Snaps don't put there configurations in `/etc`, instead you'll find your microk8s configuration files around this file (your secret token) `/snap/microk8s/current/known_token.csv`
 
 
-
-## Setup the system for local testing
-
-```
-sudo snap alias microk8s.kubectl kubectl
-```
-
-
 ## Enable Extra Functionality for microk8s
 
 Ref:  https://github.com/ubuntu/microk8s
 
 ```
+sudo snap alias microk8s.kubectl kubectl # make an alias
+
 microk8s.status
-sudo microk8s.enable dns dashboard
+sudo microk8s.enable dns dashboard registry ingress
 
 # Show the dashboard in `cluter-info` requests
 kubectl --namespace=kube-system label services/kubernetes-dashboard kubernetes.io/cluster-service=true
@@ -48,8 +42,7 @@ kubectl --namespace=kube-system label services/kubernetes-dashboard kubernetes.i
 kubectl cluster-info
 sudo iptables -P FORWARD ACCEPT
 
-
-# Check the containers are running correctly
+# Check the containers are running correctly because you're the curious type
 microk8s.docker ps
 ```
 
@@ -64,6 +57,26 @@ microk8s.kubectl cluster-info
 
 Navigate to the `kubernetes-dashboard` url that should have been printed in that `kubectl cluster-info` command.  You won't be able to login yet though, that's next.  
 
+
+## Validate that your internal Docker registry works
+
+Ref:  https://github.com/ubuntu/microk8s/blob/master/docs/registry.md
+
+```
+host_name=192.168.1.130
+host_name=127.0.0.1   # Using localhost can be messed up if ipv6 is setup in /etc/hosts...
+
+docker pull gcr.io/google_containers/echoserver:1.4
+docker tag gcr.io/google_containers/echoserver:1.4 ${host_name}:32000/echoserver
+docker push ${host_name}:32000/echoserver
+```
+
+Pro Tip:  
+You can access the insecure registry from a remote machine by running...
+
+```
+ssh -L 32000:localhost:32000 torpedo  "tail -f /dev/null"
+```
 
 
 ## Validate you can deploy simple containers
@@ -158,6 +171,40 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 
 
 
+
+
+## Expose a Container to the host's network via ingress controllers
+
+- First make sure ingress is enabled with `microk8s.enable ingress`.  
+- Create a simple web server deployment `kubectl run echoserver --image=gcr.io/google_containers/echoserver:1.4 --port=8080`
+- Create a service resource for our new deployment  `kubectl expose deployment echoserver --type=NodePort`
+- Now write an ingress rule to send requests that hit the cluster for the host named `hello.com` and :
+
+```
+microk8s.kubectl apply -f - <<EOF
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kubecon
+  annotations:
+    nginx.ingress.kubernetes.io/nickname: "Wooohoooooo we're here!!!"
+spec:
+  rules:
+  - host: hello.com
+    http:
+      paths:
+      - path: '/sub-page'
+        backend:
+          serviceName: echoserver
+          servicePort: 8080
+EOF
+```
+
+Here's the final validation test, you can run this from outside the cluster and get access to the container!  
+
+```
+curl hello.com/echo
+```
 
 
 misc.  
