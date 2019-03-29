@@ -137,6 +137,7 @@ Subsequent connections to `localhost:32000` will be routed to the microk8s serve
 ## Validate you can deploy simple containers
 
 Ref: https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment
+Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
 Applying the below deployment configuration will spin up 2 containers serving basic html content via nginx.  
 ```
@@ -166,8 +167,8 @@ EOF
 Deployments are a really fun concept in kubernetes.  Basically, to create an app running, all you need is to create a deployment, and several kubernetes primitives will be created to support your app running.  Those primitives are:
 
 - Replicasets: These shepherd-like objects look over your pods and increase or decrease the number that are running to match the number of 'backup/ load balancing' pods you desire.  
-- Pods:  These are the dog-like objects that execute the linux application in a container.  Advanced people sometimes stick two containers in a single pod so they can speak directly to eachother over localhost, but let's not get into the weeds here ;)
-- Services:  These objects are the ears of your containers.  They allow your dogs to hear the commands of their loving shepherd and perform the work requested of them.  
+- Pods:  These are the dog-like objects that execute the linux application in a container.  Advanced people sometimes stick two containers in a single pod so they can speak directly to each other over localhost, but let's not get into the weeds here ;)
+- Services:  These objects are the ears of your containers.  They allow your dogs to hear the commands of their loving shepherd and perform the work requested of them.  Sadly this primitive actually needs to be created separately from our deployment :(
 
 Go ahead, inspect all these lovely objects:
 
@@ -175,7 +176,7 @@ Go ahead, inspect all these lovely objects:
 kubectl get deployments
 kubectl get replicasets
 kubectl get pods
-kubectl get services # HA, we didn't actually make these!  We'll do that later
+kubectl get services # We won't see any services here, we'll make some later
 ```
 
 Ok, have you had your fill of deploying an nginx server?  Delete it by it's name:
@@ -188,10 +189,12 @@ kubectl delete deployments/nginx-deployment
 
 ## Expose a Container to the host's network via ingress controllers
 
+So far, you've deployed your first app in the above section, but it was only accessible from users directly on the cluster.  Remote machines could not reach our nginx server!  To allow remote machines to access our pods, we use an `ingress`.  There's a little overhead we need to tackle before we can get started though...
+
 - First make sure ingress is enabled with `microk8s.enable ingress`.  
 - Create a simple web server deployment `kubectl run echoserver --image=gcr.io/google_containers/echoserver:1.4 --port=8080`
 - Create a service resource for our new deployment  `kubectl expose deployment echoserver --type=NodePort`
-- Now write an ingress rule to send requests that hit the cluster for the host named `hello.com` and :
+- Now write an ingress rule to send requests that hit the cluster addressed to the host named `hello.com` towards our new deployment:
 
 ```
 microk8s.kubectl apply -f - <<EOF
