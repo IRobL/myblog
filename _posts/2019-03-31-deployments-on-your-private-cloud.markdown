@@ -5,7 +5,7 @@ date:   2019-03-31 12:00:00 -0500
 categories: infrastructure kubernetes
 ---
 
-## Verbose Background on How Many Physical Machines your Cloud Should Be (skip me)
+## Verbose Background on How Many Physical Machines your Cloud Should Consist of and their Purpose (skip me)
 
 I've been struggling getting my new private-cloud online and operational.  Back in the 2000s, private clouds were easy.  Install Debian on a spare machine, and install a bunch of stuff on it.  Map a bunch of NFS shares to various PCs to increase overall usable storage of the system.  
 
