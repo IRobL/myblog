@@ -32,7 +32,7 @@ Out of the box, build jobs can run directly on the master node.  But we want to 
   - Follow this tut to add a build agent: https://theithollow.com/2016/04/11/add-a-jenkins-node-for-windows-powershell/
   - Install Java on our Windows-based gaming rig
   - Download the agent.jar onto the windows machine via http://yourserver/jnlpJars/agent.jar
-  - Navigate to https://yourserver/computer/windows_7_agent/ assuming you named your machine `windows_7_agent` to see the `Run from agent command line:` command
+  - Navigate to https://yourserver/computer/windows-7-agent/ assuming you named your machine `windows-7-agent` to see the `Run from agent command line:` command
 
 Once that's done with, you should be able to execute your build jobs from jenkins on your gaming machine!
 
