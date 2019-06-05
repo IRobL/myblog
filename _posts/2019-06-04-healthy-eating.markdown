@@ -11,7 +11,7 @@ I used to spend exorbitant amounts of time exercising to keep my body from getti
 ###### Revelations
 
 - Don't worry about exercising
-- Eliminate hungry inducing foods
+- Eliminate hunger inducing foods
 - Abstain from eating wheat and corn products
 - Fast between meals
 - Wake up hungry for breakfast
@@ -22,6 +22,11 @@ I used to spend exorbitant amounts of time exercising to keep my body from getti
 ### Is Exercising Needed?
 
 To my astonishment, exercise was not needed to begin losing weight.  Granted I had built up a lot of muscle mass over the past 6 months and was at least 35lbs over weight, but it seemed that exercising wasn't relevant to correcting this issue.  I was actually a little upset about this discovery, because I've spent a lot of time exercising when I'd have greatly preferred to be doing something else.  Every week or so, I try to lift, because honestly, I don't even believe it can be this way (plus muscle loss wouldn't be ideal) but when I shifted my nutritional intake around, I did not pay any mind to whether I was "getting enough exercise" and it totally didn't matter, I was losing weight without actually expecting to.  
+
+
+### Hunger inducing foods
+
+Certain foods cause an increase in your appetite.  Cereal is a good example of this.  Just the other day I was experimenting with adding cereal to my diet, and foolishly chose a box with Trisodium Phosphate as one of it's ingredients.  Let me just say that that box of cereal did not live to see another day past the day it was opened.  Cheese and eggs are more good examples of foods that boost your appetite.  I haven't studied it thoroughly but I have a hunch that most breads will do the same.  Also, just with plain oatmeal, if you add sugar to it, suddenly when you're finished eating, you're hungry for another bowl.  I find that I'm much happier without adding these hunger inducing agents to my daily meals because I just don't have the time be exercise all these extra helpings of calories off by the end of the day.  
 
 
 ### Potato Dieting
