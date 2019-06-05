@@ -49,6 +49,7 @@ kubectl --namespace=kube-system label services/kubernetes-dashboard kubernetes.i
 
 kubectl cluster-info
 sudo iptables -P FORWARD ACCEPT
+sudo apt-get install iptables-persistent # make those iptable changes persistent
 
 # Check the containers are running correctly because you're the curious type
 microk8s.docker ps  ## Apparently, this isn't working now...
@@ -116,7 +117,7 @@ Ref:  https://github.com/ubuntu/microk8s/blob/master/docs/registry.md
 
 ```
 host_name=192.168.1.130
-host_name=127.0.0.1   # Using localhost can be messed up if ipv6 is setup in /etc/hosts...
+host_name=localhost   # Using localhost can be messed up if ipv6 is setup in /etc/hosts... remove ipv6 stuff in localhost...
 
 docker pull gcr.io/google_containers/echoserver:1.4
 docker tag gcr.io/google_containers/echoserver:1.4 ${host_name}:32000/echoserver
