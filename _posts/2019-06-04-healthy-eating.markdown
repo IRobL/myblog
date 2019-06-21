@@ -83,3 +83,19 @@ As it turns out, the most abused chemical in the US is sugar and so I've been tr
 ###### Deserts (only for adjusting)
 - Sliced bananas topped with peanutbutter
 - Mangos
+
+
+### Starter Juicing Ingredient List
+
+So my take on juicing is that it's ok to not get every ingredient every time, just as it's ok to experiment with new things (but I stay far away from parsnip and ginger root).  So below is my general goto "core" ingredient list.  If you're missing too many leafy greens or you wind up watering things down too much with stuff like cucumber or green beans, you won't feel full.  After a proper juicing meal, I like to think I'm full for at least 3 hours, so if you don't feel full afterwords (ie you would NOT want another sip of juice) then tweak your proportions or add less flavor enhancers.  
+
+  - Broccoli (2 handfuls)
+  - Spring Veggy Mix (~1/4th a box)
+  - Kale (~2 big branches)
+  - Asparagus (handful)
+  - 1/3 Onion
+  - Optional: 4 Brussels Sprouts (warning: contains Omega-3)
+  - Optional:  Green Beans (2 handfuls) (taste smoother)
+  - 1/4 Lemon OR 1/4 Habanero Pepper (taste improver)
+  - Red/ orange/ yellow bell pepper (taste improver)
+  - Carrots (2 handfuls) (taste improver)
