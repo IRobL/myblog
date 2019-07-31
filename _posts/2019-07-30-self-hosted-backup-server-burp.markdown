@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tuning BURP - A mature self-hosted backup solution"
+title:  "Tuning BURP - A Mature Self-Hosted Backup Solution"
 date:   2019-07-15 12:00:00 -0500
 categories: backups private-cloud
 ---
