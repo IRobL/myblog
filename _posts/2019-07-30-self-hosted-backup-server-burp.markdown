@@ -5,7 +5,7 @@ date:   2019-07-15 12:00:00 -0500
 categories: backups private-cloud
 ---
 
-Backups are important.  Your best stuff should already be shared on GitHub, but some stuff is nice and isn't already setup in it's own git repository.  Plus, knowing that your stuff is safely on your own NAS can be more conmforting than having it on someone else's computers.
+Backups are important.  Your best stuff should already be shared on GitHub, but some of your digital content is important to you but isn't already setup in it's own git repository.  Plus, knowing that your stuff is safely on your own NAS can be more comforting than having it on someone else's computers.
 
 ###### I backup these kinds of things
 - My non-cloud based password manager
@@ -14,15 +14,17 @@ Backups are important.  Your best stuff should already be shared on GitHub, but 
 - My web browser configurations??
 - My WIP Writing
 
-###### I store centrally, these kinds of things
+###### I store centrally on my private NAS...
 - My music
 - My videos
 - My pictures (well.. not really...)
-- My source code (GH + GitLab)
-- My Text editor configurations
-- My linux dotfiles
-- My ToDo list (gist)
+- My private source code
 - My sensative dotfiles and SSH configs
+
+###### I store centrally on public GH
+- My source code (GH + GitLab)
+- My linux dotfiles (including text editor configs)
+- My ToDo list (gist)
 
 Ok, so clearly, I don't need to backup EVERYTHING, but generally, I backup my home folder in linux.  Because that's 35GB we're talking about, I exclude stuff from that folder that I know takes up a lot of space, and isn't actually all that useful to backup.
 
