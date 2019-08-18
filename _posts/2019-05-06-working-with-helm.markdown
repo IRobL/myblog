@@ -38,9 +38,11 @@ How helm Templates work:  https://github.com/helm/helm/blob/master/docs/charts_t
 
 ###### Download a suitable Binary
 
-I used the links on this page to get v2.10.0 https://github.com/helm/helm/releases/tag/v2.10.0
+I used the links on this page to get v2.14.1 https://github.com/helm/helm/releases/tag/v2.14.1
 
 
 ###### Use helm to install tiller (the server part of helm) into your k8s cluster
 
-helm init --tiller-image=k8s-images:tiller-v2.10.0
+```
+helm init --tiller-image=k8s-images:tiller-v2.14.1
+```
