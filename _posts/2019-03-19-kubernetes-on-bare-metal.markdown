@@ -228,6 +228,13 @@ misc.
 http://dag.wiee.rs/howto/ssh-http-tunneling/
 
 
+## Enhancement: Enable NetworkPolicy objects via Cilium
+
+Ref: https://docs.cilium.io/en/stable/gettingstarted/microk8s/
+
+I blindly followed the above instructions...
+
+
 ## Enhancement: Enable creation of PVCs that use FreeNAS as a storage backend
 
 Ref: https://github.com/nmaupu/freenas-provisioner
@@ -235,6 +242,12 @@ Ref: https://github.com/nmaupu/freenas-provisioner
 PVCs are how you create persistent state (e.g. files on a file system) that persists even after the pod reading/ writing to it is destroyed and then recreated.  Out of the box, microk8s offers the `microk8s-hostpath` StorageClass which allows the cluster to create PVCs with a storage backend that is a simple file on the microk8s filesystem.  To confirm this, you can run `microk8s.kubectl get storageclass` to list the available StorageClasses on Microk8s.  While `microk8s-hostpath` is absolutely fine to use, it can be problematic having state exist on your microk8s server, e.g. when you do an automated fresh re-install of microk8s, any deployments that had PVCs will stop working because all PVC state would have been wiped out in the re-install of microk8s.  
 
 I like keeping all my state on my FreeNAS server, so we'll be installing the freenas-provider to make PVCs go there instead of directly on the microk8s server... but I'll do that later, for now hostpath is fine actually...
+
+
+## Enhancement: Enable Let's Encrypt Signed Cluster
+
+Ref: https://itnext.io/automated-tls-with-cert-manager-and-letsencrypt-for-kubernetes-7daaa5e0cae4
+
 
 
 
