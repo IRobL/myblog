@@ -28,10 +28,11 @@ When you're installing, you'll see a section about adding `snaps`.  Snaps are a 
 During the Ubuntu installation process, choose to enable the `microk8s` snap by moving the cursor over to it and using the space bar.  Snaps can also be installed post-installation, simply run the below command:
 
 ```
-snap install microk8s --classic
+sudo snap install microk8s --classic
+sudo snap refresh --channel=1.15/edge microk8s
 ```
 
-Snaps don't put their configurations in `/etc`, instead you'll find your microk8s configuration files around this path `/snap/microk8s/current/known_token.csv`
+Snaps don't put their configurations in `/etc`, instead you'll find various microk8s configuration files around this path `/snap/microk8s/current`.  
 
 
 ## Enable Extra Functionality for microk8s
@@ -42,7 +43,7 @@ Ref:  https://github.com/ubuntu/microk8s
 sudo snap alias microk8s.kubectl kubectl # make an alias
 
 microk8s.status
-sudo microk8s.enable dns dashboard registry ingress
+sudo microk8s.enable dns dashboard registry ingress cilium
 
 # Show the dashboard in `cluter-info` requests
 kubectl --namespace=kube-system label services/kubernetes-dashboard kubernetes.io/cluster-service=true
@@ -72,7 +73,7 @@ Navigate to the `kubernetes-dashboard` url that should have been printed in that
 
 ref:  https://www.admintome.com/blog/connecting-to-your-kubernetes-cluster-remotely/
 
-When you installed microk8s, it created an important configuration file at `/snap/microk8s/current/configs/kubelet.config`.  That file, believe it or not, is how you log into kubernetes.  To enable your development laptop to login, simply copy this file to your dev machines `~/.kube/config` file and you're good to go!  Kubernete's support for 'users' is terribly limited right now, so simply enjoy admin and be glad you don't work for an enterprise company that wants you to email support teams to create users for you and email you config files back ;)
+When you installed microk8s, sometimes it will create an important configuration file at `/snap/microk8s/current/configs/kubelet.config`.  That file, believe it or not, is how you log into kubernetes.  If you don't see that file, then run the command `microk8s.config` to print the config file to your terminal.  To enable your development laptop to login, simply copy this file to your dev machines `~/.kube/config` file and you're good to go!  Kubernete's support for 'users' is terribly limited right now, so simply enjoy admin and be glad you don't work for an enterprise company that wants you to email support teams to create users for you and email you config files back ;)
 
 ```
 
@@ -88,7 +89,7 @@ kubectl get pods --kubeconfig=config
 
 
 <!--
-## Login from a Remove Machine (not currently possible!)
+## Login from a Remote Machine (not currently possible!)
 
 You'll probably want to access your k8s cluster remotely.  Logging into the cluster is [weird](https://blog.christianposta.com/kubernetes/logging-into-a-kubernetes-cluster-with-kubectl/).  In a perfect world you could run the below commands to login, but this won't work for microk8s until you create a custom user....
 
