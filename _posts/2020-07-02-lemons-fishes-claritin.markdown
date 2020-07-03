@@ -11,7 +11,7 @@ I'm finding myself with tons and tons of energy after a long slump.  Part of the
 Anyway, my solution is to do 32 oz of coffee mon - fri; on saturday do 1 cup of kruig; and on Sunday, zero coffee and tons of naps.  This makes it so Monday, Tuesday and Wednesday are guaranteed to be pretty productive, even late into the day.  
 
 ###### Foods
-I'm taking chewable Claratin in the morning (for fish allergy) and eating salmon every Tuesday, Thrs, and Sun.  
+I'm taking chewable Claratin in the morning (for fish allergy) and eating salmon every Tuesday, Thrs, and Sun.  I'm drinking Orange Juice after work to backpedal from Coffee in the evenings.
 
 ###### Work Habits
 I've also switched back to workoholism, which replaces all vide-gaming that isn't purely socially purposed (I'm taking a break from the house project).  
