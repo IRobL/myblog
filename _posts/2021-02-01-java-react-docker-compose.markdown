@@ -108,7 +108,7 @@ export MYSQL_PORT='30409'
 export REACT_APP_API_URL='127.0.0.1'
 ```
 
-Good `README.md` files describe the project, the steps to boot it up in development mode, and may also include fun badges or diagrams.  Remember you can link to readme files located within your microservices to go into great depths about those systems.  
+Good `README.md` files describe the project, the steps to boot it up in development mode, and may also include fun badges or diagrams.  Remember you can link to readme files located within your microservices to go into great depths about those systems.
 
 
 ## Java
@@ -160,7 +160,7 @@ jar     { archiveName 'app.jar' }
 bootJar { archiveName 'app.jar' }
 ```
 
-To build it, run `docker build . -t testbuild`.  Hopefully it built fine and you can test that it runs properly with `docker run -it testbuild`.  
+To build it, run `docker build . -t testbuild`.  Hopefully it built fine and you can test that it runs properly with `docker run -it testbuild`.
 
 
 ## React
@@ -177,7 +177,7 @@ cd react-project-name
 npm install --save redux @reduxjs/toolkit react-router-dom typescript react-bootstrap react-toastify
 ```
 
-Then overwrite your ReactDOM section in `index.js` with this snippet for react router and redux.  
+Then overwrite your ReactDOM section in `index.js` with this snippet for react router and redux.
 
 (`src/index.js`)
 ```
@@ -203,7 +203,7 @@ ReactDOM.render(
 .
 ```
 
-You'll need to create `src/app/store.js` for things to work now.  
+You'll need to create `src/app/store.js` for things to work now.
 
 ```
 mkdir src/app
@@ -219,7 +219,7 @@ export default configureStore({
 ' > src/app/store.js
 ```
 
-Finally we get to the routing.  Include toastify here because it's better than `alert`.  
+Finally we get to the routing.  Include toastify here because it's better than `alert`.
 
 ```
 echo '
@@ -232,8 +232,6 @@ import Header from "./features/static/Header";
 import PageNotFound from "./features/static/PageNotFound";
 import HomePage from "./features/static/HomePage";
 import AboutPage from "./features/static/AboutPage";
-import LoginPage from "./features/login/LoginPage";
-import UsersPage from "./features/users/UsersPage"; // eslint-disable-line import/no-named-as-default
 
 function App() {
   return (
@@ -242,8 +240,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route path="/users" component={UsersPage} />
         <Route component={PageNotFound} />
       </Switch>
       <ToastContainer autoClose={3000} hideProgressBar />
@@ -255,8 +251,8 @@ export default App;
 ' > src/App.js
 ```
 
+Now you have `6` new files to create before things will work again: Header, PageNotFound, Spinner, HomePage, AboutPage, and Store.  These files are all really simple.
 
-Now you have `7` new files to create before things will work again: Header, PageNotFound, Spinner, HomePage, AboutPage, LoginPage, and UsersPage.  These pages are all simple.  
 
 ###### Header.js
 
@@ -269,9 +265,7 @@ import React, {useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-import { bindActionCreators } from "redux";
-// import * as loginSliceActions from "../login/loginSlice";
-let loginSliceActions = {};
+// import { bindActionCreators } from "redux";
 
 const Header = ({currentUserName, actions, ...props}) => {
   const activeStyle = { color: "#F15B2A" };
@@ -280,36 +274,6 @@ const Header = ({currentUserName, actions, ...props}) => {
   useEffect(() => {
     console.log("I used header effects");
   });
-
-  function checkExp() {
-    if (!loginSliceActions.loggedInWithUnexpiredToken()) {
-      alert("THE TOKEN IS EXPIRED, I SHOULD LOG YOU OUT.");
-    } else {
-      let expirationDate = new Date(parseInt(localStorage.getItem("currentUserTokenExpiration")) * 1000 );
-      let msLeft = expirationDate - new Date();
-      let secondsLeft = msLeft/ 1000;
-      alert("There are " + secondsLeft + " more seconds left on this token.");
-    }
-  }
-
-  function LoginNavItem() {
-    if (currentUserName !== null) {
-      return (
-        <>
-          <button onClick={actions.logout}>
-            Logout
-          </button>
-          {" | "}
-          Logged in as <span>{currentUserName}</span>
-        </>
-      )
-    }
-    return (
-      <NavLink to="/login" activeStyle={activeStyle}>
-        Login
-      </NavLink>
-    )
-  }
 
   return (
     <nav>
@@ -320,21 +284,12 @@ const Header = ({currentUserName, actions, ...props}) => {
       <NavLink to="/about" activeStyle={activeStyle}>
         About
       </NavLink>
-      {" | "}
-      <NavLink to="/users" activeStyle={activeStyle}>
-        Users
-      </NavLink>
-      {" | "}
-      <LoginNavItem />
-      {" | "}
-      <button onClick={checkExp}>Check Expiration</button>
     </nav>
   );
 };
 
 Header.propTypes = {
   actions: propTypes.object.isRequired,
-  // currentUserName: propTypes.object.isRequired,
 };
 
 // Redux will magically call this when our state.users object changes following
@@ -373,6 +328,7 @@ export default PageNotFound;
 ' > src/features/static/PageNotFound.js
 ```
 
+
 ###### Spinner.js
 
 ```
@@ -390,24 +346,17 @@ export default Spinner;
 ' > src/common/Spinner.js
 ```
 
-```
-touch src/common/logo.png
-```
-
 
 ###### HomePage.js
 
 ```
 echo '
 import React from "react";
-import logo from "../../common/logo.png";
 
 const HomePage = () => {
   return (
     <>
-      <h1>Welcome to NetGrid</h1>
-      <img src={logo} width="100" className="App-logo" alt="logo" />
-      <div>Register to play for free!</div>
+      <h1>Welcome to Your App</h1>
 
       <div className="debug">
         <div>API_URL: {process.env.REACT_APP_API_URL} </div>
@@ -419,6 +368,7 @@ const HomePage = () => {
 export default HomePage;
 ' > src/features/static/HomePage.js
 ```
+
 
 ###### AboutPage.js
 
@@ -439,235 +389,49 @@ export default AboutPage;
 ' > src/features/static/AboutPage.js
 ```
 
-###### LoginPage.js
-
-```
-mkdir -p src/features/login
-
-echo '
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap/lib";
-// import "./LoginPage.css";
-
-import { connect } from "react-redux";
-import propTypes from "prop-types";
-import { bindActionCreators } from "redux";
-import Spinner from "../../common/Spinner";
-// import * as loginSliceActions from "../login/loginSlice";
-let loginSliceActions = {}
-
-
-function LoginPage({currentUserName, actions, ...props}) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    actions.login({email, password})
-  }
-
-  return (
-    <div className="Login">
-      <h1>Login</h1>
-      {props.loading ? (
-        <Spinner />
-      ) : (
-        currentUserName === "" ? (
-          <div>State: Logged out </div>
-        ) : (
-          <div>State: Logged in :) </div>
-        )
-      )}
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            autoFocus
-            type="user_name"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
-          Login
-        </Button>
-      </form>
-
-      <div>
-        You are currently logged in as <span>{currentUserName}</span>
-      </div>
-    </div>
-  );
-}
-
-LoginPage.propTypes = {
-  actions: propTypes.object.isRequired,
-  // currentUserName: propTypes.object.isRequired,
-};
-
-function mapStateToProps(state) {
-  return {
-    currentUserName: state.login.currentUserName,
-    loading: state.login.loading === "pending",
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      setCurrentUsername: bindActionCreators(loginSliceActions.setCurrentUsername, dispatch),
-      setLogin: bindActionCreators(loginSliceActions.setLogin, dispatch),
-      login: bindActionCreators(loginSliceActions.login, dispatch),
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
-' > src/features/login/LoginPage.js
-```
-
-
-###### UsersPage.js
-
-```
-mkdir src/features/users
-
-echo '
-import React, {useEffect, useState} from "react";
-
-import { connect } from "react-redux";
-import propTypes from "prop-types";
-import { bindActionCreators } from "redux";
-import { toast } from "react-toastify";
-
-import { Redirect } from "react-router-dom";
-import Spinner from "../../common/Spinner";
-
-// import UserList from "./UserList";
-let UserList = () => { return };
-// import * as userSliceActions from "./userSlice";
-let userSliceActions = {};
-// import * as loginSliceActions from "../login/loginSlice";
-let loginSliceActions = {};
-
-const UsersPage = ({
-  users,
-  loading,
-  actions,
-  ...props
-}) => {
-  const [redirectToAddCoursePage, setRedirectToAddCoursePage] = useState(false);
-
-  useEffect(() => {
-    if ( weShouldQueryUsers() ) {
-      actions.loadUsers()
-        .catch((error) => {
-          alert("Loading users failed HOW DO I CATCH HERE"); });
-    }
-
-    loginSliceActions.logoutIfExpired();
-  });
-
-  function weShouldQueryUsers() {
-    let myConst = loginSliceActions.loggedInWithUnexpiredToken();
-    return ( users.length === 0
-             && loading === "idle"
-             && loginSliceActions.loggedInWithUnexpiredToken() );
-  }
-
-  const handleDeleteUser = (user) => {
-    // const userWantsToDelete = confirm("Are you sure?");
-    const userWantsToDelete = true;
-    if (userWantsToDelete) {
-      toast.success("User deleted");
-      actions.deleteUser(user.id).catch((error) => {
-        toast.error("Delete failed. " + error.message, { autoClose: false });
-      });
-    }
-  };
-
-  return (
-    <>
-      {redirectToAddCoursePage && <Redirect to="/user" />}
-      <h2>Users</h2>
-      {props.loading === "pending" ? (
-        <Spinner />
-      ) : props.loading === "Unauthorized" || !loginSliceActions.weAreLoggedIn() ? (
-        <div>Unauthorized, please log in to a user with the correct permissions.</div>
-      ) : users.length === 0 && !loginSliceActions.loggedInWithUnexpiredToken() ? (
-        <div>Expired Token</div>
-      ) : (
-        <>
-          <button
-            style={{ marginBottom: 20 }}
-            className="btn btn-primary add-course"
-            onClick={() => setRedirectToAddCoursePage(true)}
-          >
-            Add User
-          </button>
-
-
-          <UserList
-            onDeleteClick={handleDeleteUser}
-            users={users}
-          />
-        </>
-      )}
-    </>
-  );
-};
-
-UsersPage.propTypes = {
-  actions: propTypes.object.isRequired,
-  users: propTypes.array.isRequired,
-  loading: propTypes.string.isRequired,
-};
-
-// Redux will magically call this when our state.users object changes following
-// an action being sent to a reducer modifieing state.users
-function mapStateToProps(state) {
-  return {
-    users: state.users.users,
-    userSlice: state.users,
-    loading: state.users.loading,
-  };
-}
-
-// this fancy method gets installed into the components props for you per the export line below
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      loadUsers: bindActionCreators(userSliceActions.fetchAll, dispatch),
-      deleteUser: bindActionCreators(userSliceActions.deleteUser, dispatch),
-      logout: bindActionCreators(loginSliceActions.logout, dispatch),
-    },
-  };
-}
-
-// export default UsersPage;
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
-' > src/features/users/UsersPage.js
-```
-
-
-TODO:  Next install react router dom into your index.js and give yourself an about page plus a home.  
-
-TODO:  Finally add some basic scaffolding around CRUD for a new recipes page.  
-
-
 
 
 
 ###### Liquibase
+
+Now that we have a Java backend, and a very vanilla React frontend, we can put together our liquibase folder project.  It's composition is as such:
+
+```
+liquibase
+└─┐
+  ├── Dockerfile
+  │
+  ├── entrypoint.sh
+  │
+  └── liquibase.properties
+  │
+  └── changelogs/
+      └─┐
+        ├── changelog.xml
+        │
+        ├── tables/
+        │    └─┐
+        |      ├─ changelog-ref-data.xml
+        |      └─ users/users-0001.sql
+        |
+        └── data/
+             └─┐
+               ├─ changelog-ref-data.xml
+               └─ users/users-0001.sql
+```
+
+
+
+## TODO: Pass through the services making them actually do stuff
+
+I sadly didn't have the time to finish this posting... maybe I can get to it next weekend????  :(
+
+
+###### Java - JPA Repository
+
+
+###### React - Janked together CRUD scaffolding
+
+
+
+
