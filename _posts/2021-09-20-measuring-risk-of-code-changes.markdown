@@ -5,9 +5,9 @@ date:   2021-09-20 12:00:00 -0500
 categories: software
 ---
 
-This probably won't help you with your managers concerns because he seems to be just asking for a best guess if things will work out ok or not.  But regarding the question "How do you measure risk of source code changes?" I've been wondering if there's a formal mechanism for measuring and quantifying risk.  Why quantify?  Let's assume we have a big source code repository that's been around for years.  Not all parts of the code-base are going to be of the same quality.  Some sections of it will be too risky to work on until those risks are mitigated (adding tests, improving logging and customer metrics, etc.).
+Regarding the question "How do you measure risk of source code changes?" I've been wondering myself if there's a formal mechanism for measuring and quantifying risk.  Why quantify?  Let's assume we have a big source code repository that's been around for years.  Not all parts of the code-base are going to be of the same quality.  Some sections of it will be too risky to work on until those risks are mitigated (adding tests, improving logging and customer metrics, etc.).
 
-The three subjects of concern I'm most interested in are:
+The three aspects of concern of most interested in are:
 
 - What's the code change like?
 - What's the existing code like?
@@ -17,7 +17,7 @@ Here's a listing of concerns impacting risk (most borrowed from [Predicting Risk
 
 1. Are there a lot of lines of code added and deleted?
 2. Are the changes very diffuse? (e.g. number of files, modules, and subsystems touched)?
-3. Are there useful automated test that build confidence about the change?
+3. Are we missing useful automated test that build confidence about the change?
 4. Does the team lack an understanding of the code region?
 5. Is it difficult to observe whether the change has negatively impacted users of the system?
 6. Is it difficult to roll back the change in a timely manor?
