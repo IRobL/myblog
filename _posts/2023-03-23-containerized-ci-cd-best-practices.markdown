@@ -5,7 +5,7 @@ date:   2023-03-03 12:00:00 -0500
 categories: software ci cd containerization
 ---
 
-So first, let's review "what's changed," a brief history on CI/ CD.
+Let's begin with a review on "what's changed," a brief history on CI/ CD.
 
 TODO: Fact Check and reference everything, and cleanup into a graphical timeline of CI / CD tools
 
@@ -73,7 +73,7 @@ Documentation has its place, but superfluous degrees of documentation is not app
 
 
 
-References:
+#### References:
 - https://getindata.com/blog/different-generations-of-cicd-tools/
 - Azure Pipelines: https://azure.microsoft.com/en-us/blog/announcing-azure-pipelines-with-unlimited-ci-cd-minutes-for-open-source/
 - AWS CodeBuild: https://aws.amazon.com/about-aws/whats-new/2016/12/announcing-aws-codebuild/
