@@ -60,4 +60,50 @@ I avoid plugins because I avoid configuring software manually.  Here's the list 
 
 - DLNA Server - https://www.ixsystems.com/community/threads/how-to-install-minidlna-into-iocage-freenas-11-2.68978/
 
+###### An HTTP server
 
+This is for some preseeding that is required for another project.  One novelty here is that the entire configuration for this "plugin" lives on my ZFS file system, so I don't even have it tracked into github, but I'm not worrying about bit rot (and it's simple to re-write if the server catches fire).  
+
+Run this to create and configure the Jail
+
+```bash
+# Create and configure the new jail
+iocage create -n http_preseed -r 13.1-RELEASE vnet="on" ip4_addr="vnet0|192.168.1.77/24" defaultrouter="192.168.1.1" allow_raw_sockets="1" boot="on"
+iocage stop http_preseed
+mkdir /mnt/ultra/iocage/jails/http_preseed/root/mnt/iso
+mkdir /mnt/ultra/iocage/jails/http_preseed/root/mnt/gp
+iocage fstab -a http_preseed "/mnt/ultra/infrastructure/iso /mnt/iso nullfs ro 0 0"
+iocage start http_preseed
+
+# Console into the jail
+iocage console http_preseed
+pkg install -y nginx
+
+# Copy configurations
+cp /mnt/iso/nginx.conf /usr/local/etc/nginx/nginx.conf
+cp /mnt/iso/motd.template /etc/motd.template
+
+# Start webserver
+service nginx enable
+service nginx start
+```
+
+###### An SSH server
+
+
+```bash
+iocage create -n sshd_jail -r 13.1-RELEASE vnet="on" allow_raw_sockets="1" boot="on" ip4_addr="vnet0|192.168.1.78/24" defaultrouter="192.168.1.1"
+
+iocage console sshd_jail
+pkg install -y openssh-portable
+sysrc sshd_enable="YES"
+service sshd start
+pkg install -y python 
+
+pw useradd harmless
+
+pw user add harmless -c harmless -u 1111 -d /home/harmless -s /bin/csh
+mkdir -p /home/harmless/.ssh
+<ADD PUBLIC KEY>
+chown -R harmless /home/harmless
+```

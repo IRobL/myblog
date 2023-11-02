@@ -5,6 +5,24 @@ date:   2019-03-19 12:00:00 -0500
 categories: infrastructure kubernetes
 ---
 
+## UPDATE: Updating and getting access
+
+I updated my cluster.  You need to go one version at a time.  This was the last update command I ran.
+
+```
+sudo snap refresh microk8s --channel=1.28/stable
+microk8s status --wait-ready  # this is how we know it's done spinning up
+microk8s get all
+```
+
+Just run the below command to take a look at a valid admin credential.  
+
+```
+microk8s config
+```
+
+## Article
+
 Main Ref: https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/
 
 This blog post comes after sinking many hours of time into setting up an openshift cluster.  I think the problem there is that RedHat is a very for-profit and corporate employee type of software company and therefore there isn't very much emphasis on making Openshift an easy to configure product.  I really wanted to learn more about Openshift, but since it requires 'vendor support' to actually start using, I decided to just use Kubernetes which is really the software that powers Openshift in the first place and probably a more appropriate starting point for learning about scalable containerized deployments.  
@@ -76,7 +94,6 @@ ref:  https://www.admintome.com/blog/connecting-to-your-kubernetes-cluster-remot
 When you installed microk8s, sometimes it will create an important configuration file at `/snap/microk8s/current/configs/kubelet.config`.  That file, believe it or not, is how you log into kubernetes.  If you don't see that file, then run the command `microk8s.config` to print the config file to your terminal.  To enable your development laptop to login, simply copy this file to your dev machines `~/.kube/config` file and you're good to go!  Kubernete's support for 'users' is terribly limited right now, so simply enjoy admin and be glad you don't work for an enterprise company that wants you to email support teams to create users for you and email you config files back ;)
 
 ```
-
 scp torpedo:/snap/microk8s/current/configs/kubelet.config ~/.kube/config
 
 # Optionally point this at some OTHER config file in ~/.kube,
